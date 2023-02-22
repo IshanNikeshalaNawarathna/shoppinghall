@@ -1,0 +1,258 @@
+.main-body {
+    background-image: url("");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: "Honey";
+    src: url("font/HoneyScript-Light.ttf");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    src: url("font/Quicksand-Medium.ttf");
+}
+
+* {
+    font-size: 14px;
+    font-family: "Quicksand";
+}
+
+.logo {
+    background-image: url("resocess/webLogo/weblogotitale.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+
+}
+
+.newLogo {
+    background-image: url("resocess/webLogo/logo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+}
+
+.txt1 {
+    font-size: 30px;
+    font-family: "Honey";
+    letter-spacing: 2px;
+    font-weight: bold;
+
+}
+
+
+.txt2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* .background {
+ background-image: url("resocess/bcakgroud.jpg");
+ background-size: contain;
+ background-position: center;
+ background-repeat: no-repeat;
+
+} */
+
+.signout:hover {
+    cursor: pointer;
+}
+
+.poster-img-1 {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.bgimg {
+
+    background-repeat: no-repeat;
+    background-size: contain;
+
+
+
+}
+
+.body {
+    background-color: #e3edf7;
+}
+
+.backimg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.carticon {
+    height: 350px;
+    background-image: url("resocess/cart\ .svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.bookmark {
+    height: 300px;
+    background-image: url("resocess/bookmark.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+}
+
+.txtLine {
+    position: relative;
+    margin-top: 10px;
+}
+
+.txtLine::after {
+    content: '';
+    width: 0;
+    height: 4px;
+    background: rgb(20, 40, 77);
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    transition: 0.5s;
+    border-radius: 100px;
+}
+
+.txtLine:hover::after {
+    width: 100%;
+}
+
+.imgView {
+    height: 170px;
+    transition: transform 0.5s;
+    background-position: center;
+
+}
+
+.imgView:hover {
+    transform: scale(1.1);
+}
+
+/* .star {
+ cursor: pointer;
+ width: 20px;
+ /* background: #ccc; */
+/* outline: none; */
+/* } */
+
+/* .star:before {
+ content: 'f005';
+ font-family: "fontAwesome";
+ font-size: 30px;
+ color: #101010; */
+/* } */
+
+/* .star::after {
+ content: 'f005';
+ font-family: "fontAwesome";
+ font-size: 30px;
+ color: #1f9cff;
+ opacity: 0;
+ transition: 0.5s;
+
+} */
+
+/* .star:hover::after 
+.star:hover~star::after 
+.star:checked~star::after {
+ opacity: 1;
+} */
+
+.invoiceImage {
+    height: 70px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.chat_box {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.indexImages {
+    /* height: 160px; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+
+
+.title {
+    margin-left: 130px;
+    /* position: absolute; */
+    /* top: 50%;
+    left: 50%;  */
+    transform: translate(-50%, -50%);
+    /* font-size: 50px; */
+    /* -webkit-text-stroke: 1px #fff; */
+    color: transparent;
+    background-image: linear-gradient(#fff, #fff);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: -740px 0;
+    animation: backcolor 6s linear infinite alternate;
+}
+
+@keyframes backcolor {
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.textFild {
+    height: 30px;
+    margin-top: 4px;
+    font-size: 13px;
+    font-family: "roboto";
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: solid;
+    border-bottom-color: rgb(61, 110, 173);
+    border-bottom-width: 5px;
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.textFild:focus {
+    border-bottom-color: rgb(20, 32, 65);
+    transition-duration: 0.5s;
+}
+
+.first-place {
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: -10px;
+
+    height: 50px;
+    background-image: url("resocess/first.svg");
+    background-position: center;
+}
+
+/* .mangediv {
+    overflow-y: scroll;
+
+} */
+
+/* .divColor {
+    background-color: darkgray;
+    background-color: transparent;
+    transition-duration: 0.5s;
+    
+}
+.divColor:focus {
+    background-color: rgb(120, 148, 226);
+    transition-duration: 0.5s;
+} */
