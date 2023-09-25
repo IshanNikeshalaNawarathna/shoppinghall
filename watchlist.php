@@ -2,6 +2,9 @@
 session_start();
 require "connection.php";
 
+if(isset($_SESSION["u"])){
+
+
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +101,7 @@ require "connection.php";
               <nav class="nav flex-column nav-pills px-2">
                 <a href="#" aria-current="page" class="fs-6">My Watchlist</a>
                 <a href="cart.php" class="nav-link fs-6">My Cart</a>
-                <a href="singleProductView.php" class="nav-link fs-6">Product Buy Now</a>
+                <!-- <a href="singleProductView.php" class="nav-link fs-6">Product Buy Now</a> -->
               </nav>
             </div>
           </div>
@@ -268,3 +271,12 @@ require "connection.php";
 </body>
 
 </html>
+
+<?php
+}else{
+  ?>
+  <script>
+        window.location = "home.php";
+  </script>
+<?php
+}

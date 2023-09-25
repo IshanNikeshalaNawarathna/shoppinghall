@@ -201,8 +201,8 @@ require "connection.php";
                                   ?>
 
                                     <tr>
-                                      <td class="fs-6"><?php echo $x + 1; ?></td>
-                                      <td onclick="viewMsgModel('<?php echo $selected_data['email']; ?>');">
+                                      <td class="fs-6" ><?php echo $x + 1; ?></td>
+                                      <td onclick="contactMasg('<?php echo $selected_data['email']; ?>');">
                                         <?php
                                         $img_rs = Database::search("SELECT * FROM `profile_image` WHERE `user_email`='" . $selected_data["email"] . "'");
                                         $img_num = $img_rs->num_rows;

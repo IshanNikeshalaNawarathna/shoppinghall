@@ -8,6 +8,7 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $mobile = $_POST["mobile"];
 $gender = $_POST["gender"];
+echo($gender);
 
 if (empty($firstname)) {
   echo ("Pleas Enter Your First Name.");

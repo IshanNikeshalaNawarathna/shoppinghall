@@ -310,10 +310,25 @@ if (isset($_GET["id"])) {
                                           $seller_data = $seller_rs->fetch_assoc();
 
                                           $seller_product_rs = Database::search("SELECT * FROM `invoice` WHERE `user_email`='" . $seller_data["email"] . "'");
-                                          $seller_product_data = $seller_product_rs->fetch_assoc();
+
+                                          if ($seller_product_rs->num_rows == 0) {
+
                                           ?>
-                                          <span class="fs-5 fw-bold ms-3"><?php echo $seller_data["fname"] . " " . $seller_data["lname"]; ?> </span>&nbsp;&nbsp; | &nbsp; &nbsp;
-                                          <span class="fs-5 fw-bold">Solad items : <?php echo $seller_product_data["qty"]; ?></span>
+                                             <span class="fs-5 fw-bold ms-3"><?php echo $seller_data["fname"] . " " . $seller_data["lname"]; ?> </span>&nbsp;&nbsp; | &nbsp; &nbsp;
+                                             <span class="fs-5 fw-bold">Solad items : 0</span>
+                                          <?php
+
+                                          } else {
+                                             $seller_product_data = $seller_product_rs->fetch_assoc();
+                                          ?>
+                                             <span class="fs-5 fw-bold ms-3"><?php echo $seller_data["fname"] . " " . $seller_data["lname"]; ?> </span>&nbsp;&nbsp; | &nbsp; &nbsp;
+                                             <span class="fs-5 fw-bold">Solad items : <?php echo $seller_product_data["qty"]; ?></span>
+                                          <?php
+                                          }
+
+
+                                          ?>
+
                                        </div>
 
                                        <div class="col-12">
@@ -713,7 +728,7 @@ if (isset($_GET["id"])) {
                      </div>
 
 
-                     <?php include "fooler.php";?>
+                     <?php include "fooler.php"; ?>
 
 
                   </div>

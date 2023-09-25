@@ -82,6 +82,7 @@ if (isset($_SESSION["admin"])) {
                                                         <a class="nav-link text-dark fs-5 mb-3" href="manageProduct.php">Manage Products</a>
                                                         <a class="nav-link text-dark fs-5 mb-3" href="productAdd.php">Add Product</a>
                                                         <a class="nav-link text-dark fs-5 mb-3" href="sellingHistory.php">Selling History</a>
+              
                                                         <?php
 
                                                         if (isset($_SESSION["admin"])) {
@@ -474,7 +475,7 @@ if (isset($_SESSION["admin"])) {
 } else {
 ?>
     <script>
-        window.location = "adminLogin.php";
+        window.location = "adminPenal.php";
     </script>
 <?php
 }

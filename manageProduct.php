@@ -378,11 +378,12 @@ require "connection.php";
                               ?>
                                 <div class="col-5 col-lg-3  border rounded-3 mb-4 ">
                                   <div class="row ">
-                                    <div class="col-8 border border-bottom-0 border-right-0 border-start-0 border-top-0 border-2 mb-2 mt-2">
+                                    <div class="col-8 border border-bottom-0 border-right-0 border-start-0 border-top-0 border-2 border-end-0 mb-2 mt-2">
                                       <label class="form-label fs-6 p-2 fw-bold"><?php echo $category_data["name"]; ?></label>
                                     </div>
                                     <div class="col-4 mt-2 text-center">
-                                      <label class="form-label fs-2"><i class="bi bi-trash fs-2 text-danger " onclick="deleteCategory('<?php echo $category_data['id']; ?>')"></i></label>
+                                      <label class="form-label fs-2"></label>
+                                      <!-- <i class="bi bi-trash fs-2 text-danger " onclick="deleteCategory('</?php echo $category_data['id']; ?>')"></i> -->
                                     </div>
                                   </div>
                                 </div>
@@ -454,11 +455,12 @@ require "connection.php";
                               ?>
                                 <div class="col-5 col-lg-3  border rounded-3 mb-4 ">
                                   <div class="row ">
-                                    <div class="col-8 border border-bottom-0 border-right-0 border-start-0 border-top-0 border-2 mb-2 mt-2">
+                                    <div class="col-8 border border-bottom-0 border-right-0 border-start-0 border-top-0 border-2 border-end-0 mb-2 mt-2">
                                       <label class="form-label fs-6 p-2 fw-bold"><?php echo $model_data["name"]; ?></label>
                                     </div>
                                     <div class="col-4 mt-2 text-center">
-                                      <label class="form-label fs-2"><i class="bi bi-trash fs-2 text-danger " onclick="deletemodel('<?php echo $model_data['id']; ?>')"></i></label>
+                                      <label class="form-label fs-2"></label>
+                                      <!-- <i class="bi bi-trash fs-2 text-danger " onclick="deletemodel('</?php echo $model_data['id']; ?>')"></i> -->
                                     </div>
                                   </div>
                                 </div>
@@ -530,11 +532,12 @@ require "connection.php";
                               ?>
                                 <div class="col-5 col-lg-3  border rounded-3 mb-4 ">
                                   <div class="row ">
-                                    <div class="col-8 border border-bottom-0 border-right-0 border-start-0 border-top-0 border-2 mb-2 mt-2">
+                                    <div class="col-8 border border-bottom-0 border-right-0 border-start-0 border-top-0 border-2 border-end-0 mb-2 mt-2">
                                       <label class="form-label fs-6 p-2 fw-bold"><?php echo $brand_data["name"]; ?></label>
                                     </div>
                                     <div class="col-4 mt-2 text-center">
-                                      <label class="form-label fs-2"><i class="bi bi-trash fs-2 text-danger " onclick="deleteBrand('<?php echo $brand_data['id']; ?>')"></i></label>
+                                      <label class="form-label fs-2"></label>
+                                      <!-- <i class="bi bi-trash fs-2 text-danger " onclick="deleteBrand('</?php echo $brand_data['id']; ?>')"></i> -->
                                     </div>
                                   </div>
                                 </div>

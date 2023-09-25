@@ -4,6 +4,8 @@ session_start();
 
 require "connection.php";
 
+// if(isset($_SESSION["u"]) ==0){
+
 $email = $_POST["signEmail"];
 $password = $_POST["signPassword"];
 $rememberme = $_POST["rememberMe"];
@@ -26,13 +28,20 @@ if (empty($email)) {
    if ($n == 1) {
 
       $data = $rs->fetch_assoc();
+
+      if ($data["status"] == 0) {
+         echo ("Sorry, your account has been suspended by the admin due to inappropriate behavior in your activity,Correct it and make it ");
+     }else {
+     echo ("success");
+     }
+
       $_SESSION["u"] = $data;
 
-      if ($data["password"] == $password) {
-         echo ("success");
-      } else {
-         echo ("Invalid Password");
-      }
+      // if ($data["password"] == $password) {
+         // echo ("success");
+      // } else {
+      //    echo ("Invalid Password");
+      // }
 
       if ($rememberme == "true") {
 
@@ -46,3 +55,7 @@ if (empty($email)) {
       echo ("Invalid Username or Password");
    }
 }
+
+// }else{
+//    echo("Invalid User.");
+// }

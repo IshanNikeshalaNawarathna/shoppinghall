@@ -50,18 +50,7 @@ session_start();
                          </div>
 
 
-                         <div class="col-12  text-start shadow  mt-2 rounded-4">
-                              <div class="row g-1">
-                                   <span class="col-12 text-warning text-decoration-underline text-start fs-2 mt-3 ">&nbsp;Shopping Hall</span>
-                                   <div class="col-12 text-start mt1 mb-3 ">
-                                        <div class="row ">
-                                             <span class="fs-6 text-dark">&nbsp;&nbsp;Colombo,Colombo 10 Sri Lanka</span><br>
-                                             <span class="fs-6 text-dark">&nbsp;&nbsp;+999 999 999</span><br>
-                                             <span class="fs-6 text-dark">&nbsp;&nbsp;shoppinghall@gmail.com</span><br>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
+
                          <!-- invoice seller deteils -->
 
                          <div class="col-12 shadow mt-2 mb-3 rounded-4">
@@ -172,23 +161,23 @@ session_start();
                                                        $g = $t - $delivery;
                                                   } else {
                                                        if ($city_data["district_id"] == 1) {
-                                                            $delivery_rs = Database::search("SELECT SUM(`delivery_free_colombo`) FROM `product` INNER JOIN `invoice` ON `product`.`id`=`invoice`.`product_id` WHERE `order_id`='" . $order_id. "'");
+                                                            $delivery_rs = Database::search("SELECT SUM(`delivery_free_colombo`) FROM `product` INNER JOIN `invoice` ON `product`.`id`=`invoice`.`product_id` WHERE `order_id`='" . $order_id . "'");
                                                             $delivery_data = $delivery_rs->fetch_assoc();
                                                             $delivery = implode(" ", $delivery_data);
                                                        } else {
-                                                            $delivery_rs = Database::search("SELECT SUM(`delivery_free_other`) FROM `product` INNER JOIN `invoice` ON `product`.`id`=`invoice`.`product_id` WHERE `order_id`='" . $order_id. "'");
+                                                            $delivery_rs = Database::search("SELECT SUM(`delivery_free_other`) FROM `product` INNER JOIN `invoice` ON `product`.`id`=`invoice`.`product_id` WHERE `order_id`='" . $order_id . "'");
                                                             $delivery_data = $delivery_rs->fetch_assoc();
                                                             $delivery = implode(" ", $deliveryl_data);
                                                        }
-                                                       $total_rs = Database::search("SELECT SUM(`total`) FROM `invoice` WHERE `order_id`='" . $order_id. "'");
+                                                       $total_rs = Database::search("SELECT SUM(`total`) FROM `invoice` WHERE `order_id`='" . $order_id . "'");
                                                        $total_data = $total_rs->fetch_assoc();
                                                        $t = implode(" ", $total_data);
-                                                       $subTotal_rs = Database::search("SELECT SUM(`price`) FROM `product` INNER JOIN `invoice` ON `product`.`id`=`invoice`.`product_id` WHERE `order_id`='" .$order_id . "'");
+                                                       $subTotal_rs = Database::search("SELECT SUM(`price`) FROM `product` INNER JOIN `invoice` ON `product`.`id`=`invoice`.`product_id` WHERE `order_id`='" . $order_id . "'");
                                                        $subTotal_data = $subTotal_rs->fetch_assoc();
                                                        $g = implode(" ", $subTotal_data);
                                                   }
 
-                                                 ?>
+                                                  ?>
                                                   <tr>
                                                        <td colspan="3"></td>
                                                        <td class="fs-6 text-info ">SUBTOTAL</td>
@@ -243,6 +232,7 @@ session_start();
                <div class="col-12 btn-toolbar justify-content-end  mt-3 mb-3">
                     <button class="btn btn-dark me-2"><i class="bi bi-printer-fill" onclick="printInovice();"></i>Print</button>
                     <a class="btn btn-danger me-2" onclick="downloadPDF();"><i class="bi bi-filetype-pdf"></i>Export An PDF</a>
+                    <a class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Shopping Hall Detelis</a>
                </div>
 
           <?php
@@ -250,10 +240,43 @@ session_start();
 
           ?>
 
+
+
+
+
           <?php include "fooler.php"; ?>
 
           </div>
      </div>
+
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                    <div class="modal-header">
+                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Address to Compeny</h1>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center align-items-center">
+                         <div class="col-12 shadow  mt-2 rounded-4 ">
+                              <div class="row g-1 ">
+                                   <span class="col-12  fs-2 mt-3 ">&nbsp;Shopping Hall</span>
+                                   <div class="col-12  mt-1 mb-3 ">
+                                        <div class="row ">
+                                             <span class="fs-6 text-dark">&nbsp;&nbsp;Colombo,Colombo 10 Sri Lanka</span><br>
+                                             <span class="fs-6 text-dark">&nbsp;&nbsp;+999 999 999</span><br>
+                                             <span class="fs-6 text-dark">&nbsp;&nbsp;shoppinghall@gmail.com</span><br>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+               </div>
+          </div>
+     </div>
+
      <script src="bootstrap.bundle.js"></script>
      <!-- <script src="bootstrap.js"></script> -->
      <script src="script.js"></script>

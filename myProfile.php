@@ -100,7 +100,7 @@ session_start();
 
                     if (empty($image_data["path"])) {
                     ?>
-                      <img src="resocess/projectUser.png" class="rounded-circle" style="width: 200px;" id="img">
+                      <img src="resocess/projectUser.png" class="rounded-circle" style="width: 150px;height: 150px;" id="img">
                     <?php
                     } else {
                     ?>

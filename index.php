@@ -120,8 +120,8 @@
                   </div>
 
                   <div class="col-12 d-none" id="msgdiv">
-                    <div class="alert alert-danger" role="alert" id="alertdiv">
-                      <i class="bi bi-x-octagon-fill fs-6" id="msg"></i>
+                    <div class="alert alert-info" role="alert" id="alertdiv">
+                      <i class="bi bi-check-circle-fill fs-6" id="msg"></i>
                     </div>
                   </div>
 
@@ -139,7 +139,10 @@
                   </div>
                   <div class="col-12">
                     <label class="form-label fw-bold">Password</label>
-                    <input type="password" class="form-control border-end-0 border-top-0 border-start-0" id="password" placeholder="Password">
+                    <div class="input-group mb-3">
+                      <input type="password" class="form-control border-end-0 border-top-0 border-start-0" id="password" placeholder="Password">
+                      <button class="border-end-0 border-top-0 border-start-0 bg-white" type="button" onclick="showPassword3();"><i id="eye" class="bi bi-eye-slash-fill"></i></button>
+                    </div>
                   </div>
                   <div class="col-6">
                     <label class="form-label fw-bold">Mobile</label>
@@ -215,7 +218,10 @@
                   </div>
                   <div class="col-12">
                     <label class="form-label fw-bold">Password</label>
-                    <input type="password" class="form-control border-end-0 border-top-0 border-start-0" id="signPassword" placeholder="Password" value="<?php echo $password; ?>">
+                    <div class="input-group mb-3">
+                      <input type="password" class="form-control border-end-0 border-top-0 border-start-0" id="signPassword" placeholder="Password" value="<?php echo $password; ?>">
+                      <button class="border-end-0 border-top-0 border-start-0 bg-white" type="button" onclick="showPassword();"><i id="eye" class="bi bi-eye-slash-fill"></i></button>
+                    </div>
                   </div>
                   <div class="col-6">
                     <div class="form-check">
@@ -233,7 +239,7 @@
                     <button class="btn btn-outline-danger" onclick="changeView();">Create New Account</button>
                   </div>
                   <div class="col-12 col-lg-4 d-grid mb-2 mt-2">
-                    <a class="btn btn-outline-dark" href="adminLogin.php"  >Admin Sign In</a>
+                    <a class="btn btn-outline-dark" href="adminLogin.php">Admin Sign In</a>
                   </div>
                   <div class="col-12">
                     <div class="row">

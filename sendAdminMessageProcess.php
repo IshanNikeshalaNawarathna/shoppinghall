@@ -3,8 +3,8 @@ session_start();
 
 require "connection.php";
 
-$msg_txt = $_POST["text"];
-$receiver = $_POST["mail"];
+$msg_txt = $_POST["typeMsg"];
+$receiver = $_POST["email"];
 
 if (empty($msg_txt)) {
  echo ("Ematy Message");
@@ -42,7 +42,7 @@ if (empty($msg_txt)) {
 
    if ($sender == $_SESSION["admin"]["email"]) {
 
-    Database::iud("INSERT INTO `admin_chat`(`content`,`date_time`,`status`,`user_email`,`admin_email`) VALUES('" . $msg_txt . "','" . $newDate . "','2','ishannikeshala99@gmail.com','" . $receiver . "')");
+    Database::iud("INSERT INTO `admin_chat`(`content`,`date_time`,`status`,`user_email`,`admin_email`) VALUES('" . $msg_txt . "','" . $newDate . "','2','" . $receiver . "','ishannikeshala99@gmail.com')");
     echo ("2");
 
    }

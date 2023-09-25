@@ -72,7 +72,7 @@ require "connection.php";
                                             <div class="col-9 offset-2 col-lg-9 offset-lg-3  mb-4">
                                                 <div class="row">
                                                     <div class="col-12 col-lg-7 mt-3 ms-3">
-                                                        <img src="<?php echo $feedback_product_images_data["code"]; ?>" style="height: 300px;width: auto;background-repeat: no-repeat;">
+                                                        <img src="<?php echo $feedback_product_images_data["code"]; ?>" class="imgView mb-3 " style="height: 300px;width: auto;background-repeat: no-repeat;">
                                                         <h3 class="card-title mt-2 ms-lg-4 ms-4"><?php echo $title_data["title"]; ?></h3>
                                                     </div>
 

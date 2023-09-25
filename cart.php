@@ -225,7 +225,18 @@ require "connection.php";
                         <div class="card-body">
                           <h5 class="card-title text-black fs-2 "><?php echo $product_data["title"]; ?> pro &nbsp;</h5>
                           <span class="card-text text-black fs-5">Rs. <b class="fs-5" style="color:#2471a3;"><?php echo $product_data["price"]; ?>.00</b></span><br>
-                          <span class="card-text fs-5"><b class="text-danger fs-5"><?php echo $cart_data["qty"]; ?></b>&nbsp;Items Available</span><br>
+                          <div class="col-12">
+                            <div class="row">
+                              <h5>Items Available</h5>
+                              <div class="col-8">
+                                <input type="number" id="<?php echo 'qty_input' . $product_data['id']; ?>" class=" border border-2 border-secondary rounded-5 fs-4 fw-bold px-3 cardqtytext" value="<?php echo $cart_data["qty"]; ?>">
+                              </div>
+                              <div class="col-4 ">
+                                <button class="fs-6  rounded-2 btn btn-dark" onclick="refresh(<?php echo $product_data['id']; ?>);"><i class="bi bi-arrow-clockwise"></i></button>&nbsp;
+                              </div>
+                            </div>
+                          </div>
+
                           <span class="card-text fs-5">Colour : <?php echo $color_data["name"]; ?></span><br>
                           <span class="card-text fs-5">Condition : <?php echo $condition_data["name"]; ?></span><br><br>&nbsp;&nbsp;&nbsp;&nbsp;
                           <span class="card-text fs-5">Delivery Fee :</span>
@@ -391,8 +402,8 @@ require "connection.php";
     ?>
 
     <?php
-    
-    
+
+
     $mobile_rs = Database::search("SELECT SUBSTRING(`mobile`,2,10) FROM `user` WHERE `email`='" . $_SESSION["u"]["email"] . "'");
     $mobile_data = $mobile_rs->fetch_assoc();
 
@@ -430,10 +441,10 @@ require "connection.php";
       console.log("successCallback-Client", result);
       // alert(JSON.stringify(result));
 
-     document.getElementById("clos").classList.add("d-none");
-     document.getElementById("btnClos").classList.add("d-none");
+      document.getElementById("clos").classList.add("d-none");
+      document.getElementById("btnClos").classList.add("d-none");
 
-   
+
       var request = new XMLHttpRequest();
       request.onreadystatechange = function() {
         if (request.readyState == 4) {
@@ -441,10 +452,10 @@ require "connection.php";
           // alert(text);
           var obj = JSON.parse(text);
           if (obj["status"] == 1) {
-            var x = setTimeout(function(){
+            var x = setTimeout(function() {
               window.location = "invoice.php?id=" + obj["id"];
             }, 4000);
-         
+
           } else {
             alert(text);
           }

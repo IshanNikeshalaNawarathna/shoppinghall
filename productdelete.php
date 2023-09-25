@@ -58,6 +58,24 @@ if ($_SESSION["u"]["email"]) {
 
                 <?php
 
+                $product_type = Database::search("SELECT * FROM `product` WHERE `user_email`='" . $email . "' AND `type`='0'");
+                if ($product_type->num_rows == 0) {
+
+                ?>
+
+                    <div class="col-12 d-flex mt-3 mb-2 justify-content-center align-items-center mb-3 bg-white rounded-4 " style="height:400px;">
+                        <span class="fs-1 text-black-50 d-block">You Have Not Delete Any Product Yet...</span>
+                    </div>
+
+                <?php
+
+                } else {
+
+                    for ($type = 0; $type < $product_type->num_rows; $type++) {
+                        $product_type_data = $product_type->fetch_assoc();
+                    }
+
+
                 ?>
 
                     <div class="col-12 shadow">
@@ -230,9 +248,11 @@ if ($_SESSION["u"]["email"]) {
 
                         </div>
                     </div>
+                <?php
 
-    
+                }
 
+                ?>
 
                 <?php include "fooler.php"; ?>
 

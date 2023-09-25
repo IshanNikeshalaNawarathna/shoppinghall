@@ -1,0 +1,291 @@
+
+
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Boxicons -->
+		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+		<!-- My CSS -->
+		<link rel="stylesheet" href="bootstrap.css" />
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" /> -->
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" href="resocess/webLogo/logo.jpg">
+
+		<title>Shopping Hall</title>
+	</head>
+
+	<body>
+
+
+		<!-- SIDEBAR -->
+		<section id="sidebar">
+
+			<ul class="side-menu top">
+				<li class="active">
+					<a href="#">
+						<i class='bx bxs-dashboard fs-5'></i>
+						<span class="text fs-5">Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class='bx bxs-shopping-bag-alt fs-5'></i>
+						<span class=" fs-5">My Store</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class='bx bxs-doughnut-chart fs-5'></i>
+						<span class="text fs-5">Analytics</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class='bx bxs-message-dots fs-5'></i>
+						<span class="text fs-5">Message</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class='bx bxs-group fs-5'></i>
+						<span class="text fs-5">Team</span>
+					</a>
+				</li>
+			</ul>
+			<ul class="side-menu">
+				<li>
+					<a href="#">
+						<i class='bx bxs-cog fs-5'></i>
+						<span class="text fs-5">Settings</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="logout">
+						<i class='bx bxs-log-out-circle fs-5'></i>
+						<span class="text fs-5">Logout</span>
+					</a>
+				</li>
+			</ul>
+		</section>
+		<!-- SIDEBAR -->
+
+
+
+		<!-- CONTENT -->
+		<section id="content" class="">
+			<!-- NAVBAR -->
+			<nav>
+				<i class='bx bx-menu'></i>
+				<!-- <a href="#" class="nav-link">Categories</a> -->
+				<a href="#" class="brand">
+					<!-- <i class='bx bxs-smile'></i> -->
+					<span class="text ms-2 fs-4 d-none d-lg-block text-primary fw-bold">Shopping Hall</span>
+				</a>
+				<form action="#">
+					<div class="form-input">
+						<input type="search form-control" placeholder="Search...">
+						<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+					</div>
+				</form>
+				<input type="checkbox" id="switch-mode" hidden>
+				<label for="switch-mode" class="switch-mode"></label>
+
+			
+			</nav>
+			<!-- NAVBAR -->
+
+			<!-- MAIN -->
+			<main>
+				<div class="head-title">
+					<div class="left">
+						<h1>Dashboard</h1>
+						<ul class="breadcrumb">
+							<li>
+								<a href="#">Dashboard</a>
+							</li>
+							<li><i class='bx bx-chevron-right'></i></li>
+							<li>
+								<a class="active" href="#">Home</a>
+							</li>
+						</ul>
+					</div>
+					<a href="#" class="btn-download">
+					<i class='bx bxs-cloud-download' ></i>
+					<span class="text">Download PDF</span>
+				</a>
+				</div>
+
+				<ul class="box-info">
+					<li>
+						<i class='bx bxs-calendar-check'></i>
+						<span class="text">
+							<h3>1020</h3>
+							<p>New Order</p>
+						</span>
+					</li>
+					<li>
+						<i class='bx bxs-group'></i>
+						<span class="text">
+							<h3>2834</h3>
+							<p>Visitors</p>
+						</span>
+					</li>
+					<li>
+						<i class='bx bxs-dollar-circle'></i>
+						<span class="text">
+							<h3>$2543</h3>
+							<p>Total Sales</p>
+						</span>
+					</li>
+				</ul>
+
+
+				<div class="table-data">
+					<div class="order">
+						<div class="head">
+							<h3>Recent Orders</h3>
+							<i class='bx bx-search'></i>
+							<i class='bx bx-filter'></i>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th>User</th>
+									<th>Date Order</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<img src="img/people.png">
+										<p>John Doe</p>
+									</td>
+									<td>01-10-2021</td>
+									<td><span class="status completed">Completed</span></td>
+								</tr>
+								<tr>
+									<td>
+										<img src="img/people.png">
+										<p>John Doe</p>
+									</td>
+									<td>01-10-2021</td>
+									<td><span class="status pending">Pending</span></td>
+								</tr>
+								<tr>
+									<td>
+										<img src="img/people.png">
+										<p>John Doe</p>
+									</td>
+									<td>01-10-2021</td>
+									<td><span class="status process">Process</span></td>
+								</tr>
+								<tr>
+									<td>
+										<img src="img/people.png">
+										<p>John Doe</p>
+									</td>
+									<td>01-10-2021</td>
+									<td><span class="status pending">Pending</span></td>
+								</tr>
+								<tr>
+									<td>
+										<img src="img/people.png">
+										<p>John Doe</p>
+									</td>
+									<td>01-10-2021</td>
+									<td><span class="status completed">Completed</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="todo">
+						<div class="head">
+							<h3>Todos</h3>
+							<i class='bx bx-plus'></i>
+							<i class='bx bx-filter'></i>
+						</div>
+						<ul class="todo-list">
+							<li class="completed">
+								<p>Todo List</p>
+								<i class='bx bx-dots-vertical-rounded'></i>
+							</li>
+							<li class="completed">
+								<p>Todo List</p>
+								<i class='bx bx-dots-vertical-rounded'></i>
+							</li>
+							<li class="not-completed">
+								<p>Todo List</p>
+								<i class='bx bx-dots-vertical-rounded'></i>
+							</li>
+							<li class="completed">
+								<p>Todo List</p>
+								<i class='bx bx-dots-vertical-rounded'></i>
+							</li>
+							<li class="not-completed">
+								<p>Todo List</p>
+								<i class='bx bx-dots-vertical-rounded'></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</main>
+			<!-- MAIN -->
+		</section>
+		<!-- CONTENT -->
+
+		 <!-- profileUpdate model -->
+		 <div class="modal fade" id="adminProfileUpdate" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="exampleModalToggleLabel">Admin Profile </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="row align-items-center">
+
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-5 offset-4 mt-2 mb-4">
+                            <input type="file" class="d-none" id="profileimg" accept="image/**">
+                            <label for="profileimg" class="btn btn-primary shadow" >Upload Profile Image</label>
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="row">
+
+                                <div class="col-6">
+                                    <label class="form-label fs-5 fw-bold">Frist Name</label>
+                                    <input type="text" class="form-control" placeholder="Frist Name" id="fname">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label fs-5 fw-bold">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Last Name" id="lname">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer ">
+                        <button class="btn btn-primary shadow" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- profileupdate model -->
+
+
+		<script src="bootstrap.js"></script>
+		<script src="script.js"></script>
+	</body>
+
+	</html>

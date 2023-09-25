@@ -81,7 +81,7 @@ $condition = $_POST["con"];
   `brand_has_model_id`,`condition_id`,`user_email`,`status_id`,`type`) VALUES ('" . $cost . "','" . $qty . "','" . $text . "','" . $title . "','" . $date . "','" . $dcwc . "',
   '" . $dcoc  . "','" . $color . "','" . $category . "','" . $brand_has_model_id. "','" . $condition. "','" . $email. "','" .$status . "','1')");
 
-  Database::iud("UPDATE `brand_has_model` SET `brand_id`='".$brand." AND `model_id`='".$model."''");
+  // Database::iud("UPDATE `brand_has_model` SET `brand_id`='".$brand." AND `model_id`='".$model."''");
 
   echo ("Product Added Successfully");
 

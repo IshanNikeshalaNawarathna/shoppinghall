@@ -133,7 +133,7 @@
                   <a href="purchasingHistory.php" class="nav-item nav-link txtLine fs-5">Purchasing&nbsp;History</a>&nbsp;
                   <!-- <a href="message.php" class="nav-item nav-link txtLine fs-5">Message</a>&nbsp;&nbsp;&nbsp; -->
 
-                  <a href="#" class="nav-item nav-link txtLine fs-5" onclick="contactAdminMsg('<?php echo $data['email']; ?>');">Contact&nbsp;Admin</a>&nbsp;&nbsp;&nbsp;
+                  <a href="contact.php" class="nav-item nav-link txtLine fs-5" >Contact&nbsp;Admin</a>&nbsp;&nbsp;&nbsp;
 
                   <div class="dropdown mt-3">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -177,89 +177,7 @@
       </div>
       </nav>
       <!-- msg model -->
-      <div class="modal fade" id="contactAdminMsg" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Admin Message</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body " style="background-color:  #fbfcfc ;">
 
-              <?php
-
-              $sender_mail = $_SESSION["u"]["email"];
-
-              $msg_rs = Database::search("SELECT * FROM `admin_chat` WHERE `user_email`='" . $sender_mail . "'");
-              $msg_num = $msg_rs->num_rows;
-
-              for ($y = 0; $y < $msg_num; $y++) {
-                $msg_data = $msg_rs->fetch_assoc();
-
-                if ($msg_data["status"] == "1") {
-                  $user_rs = Database::search("SELECT * FROM `user` WHERE `email`='" . $msg_data["user_email"] . "'");
-                  $user_data = $user_rs->fetch_assoc();
-
-              ?>
-
-
-                  <!-- send -->
-                  <div class="col-12 mt-1 mb-3">
-                    <div class="row">
-                      <div class="offset-3 col-8 rounded-4 bg-white">
-                        <div class="row">
-                          <div class="col-12 pt-2 pb-2">
-                            <span class="text-black fw-bold fs-5 mb-2 p-1"><?php echo $msg_data["content"]; ?></span>
-                          </div>
-                          <div class="col-12 text-end pb-2">
-                            <span class="text-black fs-6"><?php echo $msg_data["date_time"]; ?></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- send -->
-                <?php
-                } else if ($msg_data["status"] == "2") {
-                ?>
-                  <!-- received -->
-                  <div class="col-12 mt-1 mb-3">
-                    <div class="row">
-                      <div class=" col-8 rounded-4 bg-dark">
-                        <div class="row">
-                          <div class="col-12 pt-2 pb-2">
-                            <span class="text-white fw-bold fs-5 "><?php echo $msg_data["content"] ?></span>
-                          </div>
-                          <div class="col-12 text-end pb-2">
-                            <span class="text-white fs-6"><?php echo $msg_data["date_time"]; ?></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- received -->
-              <?php
-                }
-              }
-
-              ?>
-
-            </div>
-            <div class="modal-footer">
-              <div class="col-12">
-                <div class="row">
-                  <div class="col-9">
-                    <input type="text" class="form-control" placeholder="Message" id="typeMsg">
-                  </div>
-                  <div class="col-3 d-grid">
-                    <button class="btn btn-primary" type="button" onclick="adminSendMsg();">Send</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- msg model -->
     </div>

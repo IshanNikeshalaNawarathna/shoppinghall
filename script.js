@@ -1,4 +1,4 @@
-// header alert
+// header alertModelModel
 function hideAlert() {
   document.getElementById("msgdiv-1").className = "d-none";
   document.getElementById("msgdiv-2").className = "d-none";
@@ -40,7 +40,7 @@ function signUp() {
       if (respons == "Success") {
         document.getElementById("msg").innerHTML = respons;
         document.getElementById("msg").className = "bi bi-check2-circle fs-6";
-        document.getElementById("alertdiv").className = "alert alert-info";
+        document.getElementById("alertdiv").className = "alert alert-danger";
         document.getElementById("msgdiv").className = "d-block";
       } else {
         document.getElementById("msg").innerHTML = respons;
@@ -134,6 +134,32 @@ function showPassword2() {
     eye2.className = "bi bi-eye-slash-fill";
   }
 }
+
+function showPassword() {
+  var signPassword = document.getElementById("signPassword");
+  var eye = document.getElementById("eye");
+
+  if (signPassword.type == "password") {
+    signPassword.type = "text";
+    eye.className = "bi bi-eye-fill";
+  } else {
+    signPassword.type = "password";
+    eye.className = "bi bi-eye-slash-fill";
+  }
+}
+function showPassword3() {
+  var signPassword = document.getElementById("password");
+  var eye = document.getElementById("eye");
+
+  if (signPassword.type == "password") {
+    signPassword.type = "text";
+    eye.className = "bi bi-eye-fill";
+  } else {
+    signPassword.type = "password";
+    eye.className = "bi bi-eye-slash-fill";
+  }
+}
+
 
 function confirmP() {
   var signEmail = document.getElementById("signEmail");
@@ -823,49 +849,24 @@ function contactAdminMsg() {
   contactadminmsg.show();
 }
 
-function adminSendMsg() {
-  var msgText = document.getElementById("typeMsg").value;
+// function adminSendMsg() {
+//   var msgText = document.getElementById("typeMsg").value;
 
-  var f = new FormData();
-  f.append("text", msgText);
+//   var f = new FormData();
+//   f.append("text", msgText);
 
-  var r = new XMLHttpRequest();
+//   var r = new XMLHttpRequest();
 
-  r.onreadystatechange = function () {
-    if (r.readyState == 4) {
-      var t = r.responseText;
-      alert(t);
-    }
-  };
-  r.open("POST", "sendAdminMessageProcess.php", true);
-  r.send(f);
-}
-function adminSendMsg(email) {
-  var msgText = document.getElementById("typeMsg").value;
+//   r.onreadystatechange = function () {
+//     if (r.readyState == 4) {
+//       var t = r.responseText;
+//       alert(t);
+//     }
+//   };
+//   r.open("POST", "sendAdminMessageProcess.php", true);
+//   r.send(f);
+// }
 
-
-  var f = new FormData();
-  f.append("text", msgText);
-  f.append("mail", email);
-
-  var r = new XMLHttpRequest();
-
-  r.onreadystatechange = function () {
-    if (r.readyState == 4) {
-      var t = r.responseText;
-
-      if (t == "1") {
-        window.location.reload();
-      } else if (t == "2") {
-        window.location.reload();
-      } else {
-        alert(t);
-      }
-    }
-  };
-  r.open("POST", "sendAdminMessageProcess.php", true);
-  r.send(f);
-}
 // adminverification
 
 var avm;
@@ -999,11 +1000,10 @@ function chengStatus(email) {
 
 var viewMsg;
 
-function viewMsgModel(email) {
+function contactMasg(email) {
 
-  var msgModel = document.getElementById("userMsg" + email);
-  viewMsg = new bootstrap.Modal(msgModel);
-  viewMsg.show();
+  window.location = "adminContact.php?email=" +email;
+
 }
 
 // basicSearchAdmin penal
@@ -1634,7 +1634,7 @@ function deletemodel(id) {
       } else {
         alert(respons);
       }
-      
+
     }
   }
   request.open("GET", "deleteModelProcess.php?id=" + id, true);
@@ -1717,8 +1717,8 @@ function buyNow() {
         var amount = parseInt(price) * parseInt(qty) + parseInt(deliveryFee);
 
 
-        window.location="payment.php?id="+id + "&qty="+ qty +"&title=" +title + "&amount="+amount;
-      }else{
+        window.location = "payment.php?id=" + id + "&qty=" + qty + "&title=" + title + "&amount=" + amount;
+      } else {
         alert(respons);
       }
 
@@ -1753,3 +1753,132 @@ function buyNow() {
 //   respons.open("POST", "adminBasicSearchProductUserProcess.php", true);
 //   respons.send(form);
 // }
+
+function adminSendMsg() {
+
+  var typeMsg = document.getElementById("typeMsg").value;
+  var email = document.getElementById("email").value;
+
+  var formData = new FormData();
+  formData.append("typeMsg", typeMsg);
+  formData.append("email", email);
+
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if (request.readyState == 4) {
+      var responsText = request.responseText;
+
+      if (responsText == "1") {
+        window.location.reload();
+      } else if (responsText == "2") {
+        window.location.reload();
+      } else {
+        alert(responsText);
+      }
+
+    }
+  };
+  request.open("POST", "sendAdminMessageProcess.php", true);
+  request.send(formData);
+
+}
+
+// deashboard ---------------------------------------------------------------------
+
+const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+
+allSideMenu.forEach(item=> {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i=> {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+
+
+
+// TOGGLE SIDEBAR
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+
+
+
+
+
+
+
+const searchButton = document.querySelector('#content nav form .form-input button');
+const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
+const searchForm = document.querySelector('#content nav form');
+
+searchButton.addEventListener('click', function (e) {
+	if(window.innerWidth < 576) {
+		e.preventDefault();
+		searchForm.classList.toggle('show');
+		if(searchForm.classList.contains('show')) {
+			searchButtonIcon.classList.replace('bx-search', 'bx-x');
+		} else {
+			searchButtonIcon.classList.replace('bx-x', 'bx-search');
+		}
+	}
+})
+
+
+
+
+
+if(window.innerWidth < 768) {
+	sidebar.classList.add('hide');
+} else if(window.innerWidth > 576) {
+	searchButtonIcon.classList.replace('bx-x', 'bx-search');
+	searchForm.classList.remove('show');
+}
+
+
+window.addEventListener('resize', function () {
+	if(this.innerWidth > 576) {
+		searchButtonIcon.classList.replace('bx-x', 'bx-search');
+		searchForm.classList.remove('show');
+	}
+})
+
+
+
+const switchMode = document.getElementById('switch-mode');
+
+switchMode.addEventListener('change', function () {
+	if(this.checked) {
+		document.body.classList.add('dark');
+	} else {
+		document.body.classList.remove('dark');
+	}
+});
+
+function refresh(id) {
+  var qty = document.getElementById("qty_input"+id).value;
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function () {
+    if (request.readyState == 4) {
+      var text = request.responseText;
+
+      if (text == "success") {
+        window.location.reload();
+      } else {
+        alert(text);
+      }
+    }
+  };
+
+  request.open("GET", "refreshQtyProcess.php?id=" + id +  "&q=" + qty, true);
+  request.send();
+}

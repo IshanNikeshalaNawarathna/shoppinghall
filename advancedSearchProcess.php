@@ -24,16 +24,16 @@ if ($sort == 0) {
   }
 
   if ($status == 0 && $category != 0) {
-    $query .= " WHERE `category_id`='" . $category . "'";
+    $query .= " WHERE `category_id` = '" . $category . "'";
     $status = 1;
   } else if ($status != 0 && $category != 0) {
-    $query .= " AND `category_id`='" . $category . "'";
+    $query .= " AND `category_id` = '" . $category . "'";
   }
 
   $pid = 0;
   if ($brand != 0 && $model == 0) {
 
-    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'");
+    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id` = '" . $brand . "'");
     $brand_num = $brand_rs->num_rows;
 
     for ($x = 0; $x < $brand_num; $x++) {
@@ -42,16 +42,16 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "'";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "'";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "'";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "'";
     }
   }
 
   if ($brand == 0 && $model != 0) {
 
-    $model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `model_id`='" . $model . "'");
+    $model_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `model_id` = '" . $model . "'");
     $model_num = $model_rs->num_rows;
 
     for ($x = 0; $x < $model_num; $x++) {
@@ -60,85 +60,86 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "'";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "'";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "'";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "'";
     }
   }
 
   if ($brand != 0 && $model != 0) {
 
-    $brand_has_model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'
-  AND `model_id`='" . $model . "'");
-    $brand_has_model_num = $brand_has_model_rs->num_rows;
+    $model_has_brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'
+      AND `modle_id` = '" . $model . "'");
+    $model_has_brand_num = $model_has_brand_rs->num_rows;
 
-    for ($x = 0; $x < $brand_has_model_num; $x++) {
-      $brand_has_model_data = $brand_has_model_rs->fetch_assoc();
-      $pid = $brand_has_model_data["id"];
+    for ($x = 0; $x < $model_has_brand_num; $x++) {
+      $model_has_brand_data = $model_has_brand_rs->fetch_assoc();
+      $pid = $model_has_brand_data["id"];
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "'";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "'";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "'";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "'";
     }
   }
 
   if ($status == 0 && $condition != 0) {
-    $query .= " WHERE `condition_id`='" . $condition . "'";
+    $query .= " WHERE `condition_id`= '" . $condition . "'";
     $status = 1;
   } else if ($status != 0 && $condition != 0) {
-    $query .= " AND `condition_id`='" . $condition . "'";
+    $query .= " AND `condition_id`= '" . $condition . "'";
   }
 
   if ($status == 0 && $color != 0) {
-    $query .= " WHERE `color_id`='" . $color . "'";
+    $query .= " WHERE `colour_id`= '" . $color . "'";
     $status = 1;
   } else if ($status != 0 && $color != 0) {
-    $query .= " AND `color_id`='" . $color . "'";
+    $query .= " AND `colour_id`= '" . $color . "'";
   }
 
-  if (!empty($priceform) && empty($priceto)) {
+  if (!empty($price_from) && empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` >= '" . $priceform . "'";
+      $query .= " WHERE `price` >= '" . $price_from . "'";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` >= '" . $priceform . "'";
+      $query .= " AND `price` >= '" . $price_from . "'";
     }
-  } else if (empty($priceform) && !empty($priceto)) {
+  } else if (empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` <= '" . $priceto . "'";
+      $query .= " WHERE `price` <= '" . $price_to . "'";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` <= '" . $priceto . "'";
+      $query .= " AND `price` <= '" . $price_to . "'";
     }
-  } else if (!empty($priceform) && !empty($priceto)) {
+  } else if (!empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "'";
+      $query .= " WHERE `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "'";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "'";
+      $query .= " AND `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "'";
     }
   }
 } else if ($sort == 1) {
+
   if (!empty($txt)) {
     $query .= " WHERE `title` LIKE '%" . $txt . "%' ORDER BY `price` DESC";
     $status = 1;
   }
 
   if ($status == 0 && $category != 0) {
-    $query .= " WHERE `category_id`='" . $category . "' ORDER BY `price` DESC";
+    $query .= " WHERE `category_id` = '" . $category . "' ORDER BY `price` DESC";
     $status = 1;
   } else if ($status != 0 && $category != 0) {
-    $query .= " AND `category_id`='" . $category . "' ORDER BY `price` DESC";
+    $query .= " AND `category_id` = '" . $category . "' ORDER BY `price` DESC";
   }
 
   $pid = 0;
   if ($brand != 0 && $model == 0) {
 
-    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'");
+    $brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'");
     $brand_num = $brand_rs->num_rows;
 
     for ($x = 0; $x < $brand_num; $x++) {
@@ -147,16 +148,16 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` DESC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` DESC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` DESC";
     }
   }
 
   if ($brand == 0 && $model != 0) {
 
-    $model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `model_id`='" . $model . "'");
+    $model_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `modle_id` = '" . $model . "'");
     $model_num = $model_rs->num_rows;
 
     for ($x = 0; $x < $model_num; $x++) {
@@ -165,85 +166,86 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` DESC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` DESC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` DESC";
     }
   }
 
   if ($brand != 0 && $model != 0) {
 
-    $brand_has_model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'
-  AND `model_id`='" . $model . "'");
-    $brand_has_model_num = $brand_has_model_rs->num_rows;
+    $model_has_brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'
+      AND `modle_id` = '" . $model . "'");
+    $model_has_brand_num = $model_has_brand_rs->num_rows;
 
-    for ($x = 0; $x < $brand_has_model_num; $x++) {
-      $brand_has_model_data = $brand_has_model_rs->fetch_assoc();
-      $pid = $brand_has_model_data["id"];
+    for ($x = 0; $x < $model_has_brand_num; $x++) {
+      $model_has_brand_data = $model_has_brand_rs->fetch_assoc();
+      $pid = $model_has_brand_data["id"];
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` DESC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` DESC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` DESC";
     }
   }
 
   if ($status == 0 && $condition != 0) {
-    $query .= " WHERE `condition_id`='" . $condition . "' ORDER BY `price` DESC";
+    $query .= " WHERE `condition_id`= '" . $condition . "' ORDER BY `price` DESC";
     $status = 1;
   } else if ($status != 0 && $condition != 0) {
-    $query .= " AND `condition_id`='" . $condition . "' ORDER BY `price` DESC";
+    $query .= " AND `condition_id`= '" . $condition . "' ORDER BY `price` DESC";
   }
 
   if ($status == 0 && $color != 0) {
-    $query .= " WHERE `color_id`='" . $color . "' ORDER BY `price` DESC";
+    $query .= " WHERE `colour_id`= '" . $color . "' ORDER BY `price` DESC";
     $status = 1;
   } else if ($status != 0 && $color != 0) {
-    $query .= " AND `color_id`='" . $color . "' ORDER BY `price` DESC";
+    $query .= " AND `colour_id`= '" . $color . "' ORDER BY `price` DESC";
   }
 
-  if (!empty($priceform) && empty($priceto)) {
+  if (!empty($price_from) && empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` >= '" . $priceform . "' ORDER BY `price` DESC";
+      $query .= " WHERE `price` >= '" . $price_from . "' ORDER BY `price` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` >= '" . $priceform . "' ORDER BY `price` DESC";
+      $query .= " AND `price` >= '" . $price_from . "' ORDER BY `price` DESC";
     }
-  } else if (empty($priceform) && !empty($priceto)) {
+  } else if (empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` <= '" . $priceto . "' ORDER BY `price` DESC";
+      $query .= " WHERE `price` <= '" . $price_to . "' ORDER BY `price` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` <= '" . $priceto . "' ORDER BY `price` DESC";
+      $query .= " AND `price` <= '" . $price_to . "' ORDER BY `price` DESC";
     }
-  } else if (!empty($priceform) && !empty($priceto)) {
+  } else if (!empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "' ORDER BY `price` DESC";
+      $query .= " WHERE `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `price` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` BETWEEN '" . $priceformo . "' AND '" . $priceto . "' ORDER BY `price` DESC";
+      $query .= " AND `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `price` DESC";
     }
   }
 } else if ($sort == 2) {
+
   if (!empty($txt)) {
     $query .= " WHERE `title` LIKE '%" . $txt . "%' ORDER BY `price` ASC";
     $status = 1;
   }
 
   if ($status == 0 && $category != 0) {
-    $query .= " WHERE `category_id`='" . $category . "' ORDER BY `price` ASC";
+    $query .= " WHERE `category_id` = '" . $category . "' ORDER BY `price` ASC";
     $status = 1;
   } else if ($status != 0 && $category != 0) {
-    $query .= " AND `category_id`='" . $category . "' ORDER BY `price` ASC";
+    $query .= " AND `category_id` = '" . $category . "' ORDER BY `price` ASC";
   }
 
   $pid = 0;
   if ($brand != 0 && $model == 0) {
 
-    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'");
+    $brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'");
     $brand_num = $brand_rs->num_rows;
 
     for ($x = 0; $x < $brand_num; $x++) {
@@ -252,16 +254,16 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` ASC";
     }
   }
 
   if ($brand == 0 && $model != 0) {
 
-    $model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `model_id`='" . $model . "'");
+    $model_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `modle_id` = '" . $model . "'");
     $model_num = $model_rs->num_rows;
 
     for ($x = 0; $x < $model_num; $x++) {
@@ -270,190 +272,86 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` ASC";
     }
   }
 
   if ($brand != 0 && $model != 0) {
 
-    $brand_has_model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'
-  AND `model_id`='" . $model . "'");
-    $brand_has_model_num = $brand_has_model_rs->num_rows;
+    $model_has_brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'
+      AND `modle_id` = '" . $model . "'");
+    $model_has_brand_num = $model_has_brand_rs->num_rows;
 
-    for ($x = 0; $x < $brand_has_model_num; $x++) {
-      $brand_has_model_data = $brand_has_model_rs->fetch_assoc();
-      $pid = $brand_has_model_data["id"];
+    for ($x = 0; $x < $model_has_brand_num; $x++) {
+      $model_has_brand_data = $model_has_brand_rs->fetch_assoc();
+      $pid = $model_has_brand_data["id"];
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `price` ASC";
     }
   }
 
   if ($status == 0 && $condition != 0) {
-    $query .= " WHERE `condition_id`='" . $condition . "' ORDER BY `price` ASC";
+    $query .= " WHERE `condition_id`= '" . $condition . "' ORDER BY `price` ASC";
     $status = 1;
   } else if ($status != 0 && $condition != 0) {
-    $query .= " AND `condition_id`='" . $condition . "' ORDER BY `price` ASC";
+    $query .= " AND `condition_id`= '" . $condition . "' ORDER BY `price` ASC";
   }
 
   if ($status == 0 && $color != 0) {
-    $query .= " WHERE `color_id`='" . $color . "' ORDER BY `price` ASC";
+    $query .= " WHERE `colour_id`= '" . $color . "' ORDER BY `price` ASC";
     $status = 1;
   } else if ($status != 0 && $color != 0) {
-    $query .= " AND `color_id`='" . $color . "' ORDER BY `price` ASC";
+    $query .= " AND `colour_id`= '" . $color . "' ORDER BY `price` ASC";
   }
 
-  if (!empty($priceform) && empty($priceto)) {
+  if (!empty($price_from) && empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` >= '" . $priceform . "' ORDER BY `price` ASC";
+      $query .= " WHERE `price` >= '" . $price_from . "' ORDER BY `price` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` >= '" . $priceform . "' ORDER BY `price` ASC";
+      $query .= " AND `price` >= '" . $price_from . "' ORDER BY `price` ASC";
     }
-  } else if (empty($priceform) && !empty($priceto)) {
+  } else if (empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` <= '" . $priceto . "' ORDER BY `price` ASC";
+      $query .= " WHERE `price` <= '" . $price_to . "' ORDER BY `price` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` <= '" . $priceto . "' ORDER BY `price` ASC";
+      $query .= " AND `price` <= '" . $price_to . "' ORDER BY `price` ASC";
     }
-  } else if (!empty($priceform) && !empty($priceto)) {
+  } else if (!empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "' ORDER BY `price` ASC";
+      $query .= " WHERE `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `price` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` BETWEEN '" . $priceformo . "' AND '" . $priceto . "' ORDER BY `price` ASC";
-    }
-  }
-} else if ($sort == 2) {
-  if (!empty($txt)) {
-    $query .= " WHERE `title` LIKE '%" . $txt . "%' ORDER BY `price` ASC";
-    $status = 1;
-  }
-
-  if ($status == 0 && $category != 0) {
-    $query .= " WHERE `category_id`='" . $category . "' ORDER BY `price` ASC";
-    $status = 1;
-  } else if ($status != 0 && $category != 0) {
-    $query .= " AND `category_id`='" . $category . "' ORDER BY `price` ASC";
-  }
-
-  $pid = 0;
-  if ($brand != 0 && $model == 0) {
-
-    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'");
-    $brand_num = $brand_rs->num_rows;
-
-    for ($x = 0; $x < $brand_num; $x++) {
-      $brand_data = $brand_rs->fetch_assoc();
-      $pid = $brand_data["id"];
-    }
-
-    if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
-      $status = 1;
-    } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
-    }
-  }
-
-  if ($brand == 0 && $model != 0) {
-
-    $model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `model_id`='" . $model . "'");
-    $model_num = $model_rs->num_rows;
-
-    for ($x = 0; $x < $model_num; $x++) {
-      $model_data = $model_rs->fetch_assoc();
-      $pid = $model_data["id"];
-    }
-
-    if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
-      $status = 1;
-    } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
-    }
-  }
-
-  if ($brand != 0 && $model != 0) {
-
-    $brand_has_model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'
-  AND `model_id`='" . $model . "'");
-    $brand_has_model_num = $brand_has_model_rs->num_rows;
-
-    for ($x = 0; $x < $brand_has_model_num; $x++) {
-      $brand_has_model_data = $brand_has_model_rs->fetch_assoc();
-      $pid = $brand_has_model_data["id"];
-    }
-
-    if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
-      $status = 1;
-    } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `price` ASC";
-    }
-  }
-
-  if ($status == 0 && $condition != 0) {
-    $query .= " WHERE `condition_id`='" . $condition . "' ORDER BY `price` ASC";
-    $status = 1;
-  } else if ($status != 0 && $condition != 0) {
-    $query .= " AND `condition_id`='" . $condition . "' ORDER BY `price` ASC";
-  }
-
-  if ($status == 0 && $color != 0) {
-    $query .= " WHERE `color_id`='" . $color . "' ORDER BY `price` ASC";
-    $status = 1;
-  } else if ($status != 0 && $color != 0) {
-    $query .= " AND `color_id`='" . $color . "' ORDER BY `price` ASC";
-  }
-
-  if (!empty($priceform) && empty($priceto)) {
-    if ($status == 0) {
-      $query .= " WHERE `price` >= '" . $priceform . "' ORDER BY `price` ASC";
-      $status = 1;
-    } else if ($status != 0) {
-      $query .= " AND `price` >= '" . $priceform . "' ORDER BY `price` ASC";
-    }
-  } else if (empty($priceform) && !empty($priceto)) {
-    if ($status == 0) {
-      $query .= " WHERE `price` <= '" . $priceto . "' ORDER BY `price` ASC";
-      $status = 1;
-    } else if ($status != 0) {
-      $query .= " AND `price` <= '" . $priceto . "' ORDER BY `price` ASC";
-    }
-  } else if (!empty($priceform) && !empty($priceto)) {
-    if ($status == 0) {
-      $query .= " WHERE `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "' ORDER BY `price` ASC";
-      $status = 1;
-    } else if ($status != 0) {
-      $query .= " AND `price` BETWEEN '" . $priceformo . "' AND '" . $priceto . "' ORDER BY `price` ASC";
+      $query .= " AND `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `price` ASC";
     }
   }
 } else if ($sort == 3) {
+
   if (!empty($txt)) {
     $query .= " WHERE `title` LIKE '%" . $txt . "%' ORDER BY `qty` DESC";
     $status = 1;
   }
 
   if ($status == 0 && $category != 0) {
-    $query .= " WHERE `category_id`='" . $category . "' ORDER BY `qty` DESC";
+    $query .= " WHERE `category_id` = '" . $category . "' ORDER BY `qty` DESC";
     $status = 1;
   } else if ($status != 0 && $category != 0) {
-    $query .= " AND `category_id`='" . $category . "' ORDER BY `qty` DESC";
+    $query .= " AND `category_id` = '" . $category . "' ORDER BY `qty` DESC";
   }
 
   $pid = 0;
   if ($brand != 0 && $model == 0) {
 
-    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'");
+    $brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'");
     $brand_num = $brand_rs->num_rows;
 
     for ($x = 0; $x < $brand_num; $x++) {
@@ -462,16 +360,16 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `qty` DESC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `qty` DESC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` DESC";
     }
   }
 
   if ($brand == 0 && $model != 0) {
 
-    $model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `model_id`='" . $model . "'");
+    $model_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `modle_id` = '" . $model . "'");
     $model_num = $model_rs->num_rows;
 
     for ($x = 0; $x < $model_num; $x++) {
@@ -480,85 +378,86 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `qty` DESC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `qty` DESC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` DESC";
     }
   }
 
   if ($brand != 0 && $model != 0) {
 
-    $brand_has_model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'
-  AND `model_id`='" . $model . "'");
-    $brand_has_model_num = $brand_has_model_rs->num_rows;
+    $model_has_brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'
+      AND `modle_id` = '" . $model . "'");
+    $model_has_brand_num = $model_has_brand_rs->num_rows;
 
-    for ($x = 0; $x < $brand_has_model_num; $x++) {
-      $brand_has_model_data = $brand_has_model_rs->fetch_assoc();
-      $pid = $brand_has_model_data["id"];
+    for ($x = 0; $x < $model_has_brand_num; $x++) {
+      $model_has_brand_data = $model_has_brand_rs->fetch_assoc();
+      $pid = $model_has_brand_data["id"];
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `qty` DESC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `qty` DESC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` DESC";
     }
   }
 
   if ($status == 0 && $condition != 0) {
-    $query .= " WHERE `condition_id`='" . $condition . "' ORDER BY `qty` DESC";
+    $query .= " WHERE `condition_id`= '" . $condition . "' ORDER BY `qty` DESC";
     $status = 1;
   } else if ($status != 0 && $condition != 0) {
-    $query .= " AND `condition_id`='" . $condition . "' ORDER BY `qty` DESC";
+    $query .= " AND `condition_id`= '" . $condition . "' ORDER BY `qty` DESC";
   }
 
   if ($status == 0 && $color != 0) {
-    $query .= " WHERE `color_id`='" . $color . "' ORDER BY `qty` DESC";
+    $query .= " WHERE `colour_id`= '" . $color . "' ORDER BY `qty` DESC";
     $status = 1;
   } else if ($status != 0 && $color != 0) {
-    $query .= " AND `color_id`='" . $color . "' ORDER BY `qty` DESC";
+    $query .= " AND `colour_id`= '" . $color . "' ORDER BY `qty` DESC";
   }
 
-  if (!empty($priceform) && empty($priceto)) {
+  if (!empty($price_from) && empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` >= '" . $priceform . "' ORDER BY `qty` DESC";
+      $query .= " WHERE `price` >= '" . $price_from . "' ORDER BY `qty` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` >= '" . $priceform . "' ORDER BY `qty` DESC";
+      $query .= " AND `price` >= '" . $price_from . "' ORDER BY `qty` DESC";
     }
-  } else if (empty($priceform) && !empty($priceto)) {
+  } else if (empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` <= '" . $priceto . "' ORDER BY `qty` DESC";
+      $query .= " WHERE `price` <= '" . $price_to . "' ORDER BY `qty` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` <= '" . $priceto . "' ORDER BY `qty` DESC";
+      $query .= " AND `price` <= '" . $price_to . "' ORDER BY `qty` DESC";
     }
-  } else if (!empty($priceform) && !empty($priceto)) {
+  } else if (!empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "' ORDER BY `qty` DESC";
+      $query .= " WHERE `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `qty` DESC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` BETWEEN '" . $priceformo . "' AND '" . $priceto . "' ORDER BY `qty` DESC";
+      $query .= " AND `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `qty` DESC";
     }
   }
 } else if ($sort == 4) {
+
   if (!empty($txt)) {
     $query .= " WHERE `title` LIKE '%" . $txt . "%' ORDER BY `qty` ASC";
     $status = 1;
   }
 
   if ($status == 0 && $category != 0) {
-    $query .= " WHERE `category_id`='" . $category . "' ORDER BY `qty` ASC";
+    $query .= " WHERE `category_id` = '" . $category . "' ORDER BY `qty` ASC";
     $status = 1;
   } else if ($status != 0 && $category != 0) {
-    $query .= " AND `category_id`='" . $category . "' ORDER BY `qty` ASC";
+    $query .= " AND `category_id` = '" . $category . "' ORDER BY `qty` ASC";
   }
 
   $pid = 0;
   if ($brand != 0 && $model == 0) {
 
-    $brand_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'");
+    $brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'");
     $brand_num = $brand_rs->num_rows;
 
     for ($x = 0; $x < $brand_num; $x++) {
@@ -567,16 +466,16 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `qty` ASC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `qty` ASC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` ASC";
     }
   }
 
   if ($brand == 0 && $model != 0) {
 
-    $model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `model_id`='" . $model . "'");
+    $model_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `modle_id` = '" . $model . "'");
     $model_num = $model_rs->num_rows;
 
     for ($x = 0; $x < $model_num; $x++) {
@@ -585,70 +484,73 @@ if ($sort == 0) {
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `qty` ASC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `qty` ASC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` ASC";
     }
   }
 
   if ($brand != 0 && $model != 0) {
 
-    $brand_has_model_rs = Database::search("SELECT * FROM `brand_has_model` WHERE `brand_id`='" . $brand . "'
-  AND `model_id`='" . $model . "'");
-    $brand_has_model_num = $brand_has_model_rs->num_rows;
+    $model_has_brand_rs = Database::search("SELECT * FROM `brand_has_modle` WHERE `brand_id` = '" . $brand . "'
+      AND `modle_id` = '" . $model . "'");
+    $model_has_brand_num = $model_has_brand_rs->num_rows;
 
-    for ($x = 0; $x < $brand_has_model_num; $x++) {
-      $brand_has_model_data = $brand_has_model_rs->fetch_assoc();
-      $pid = $brand_has_model_data["id"];
+    for ($x = 0; $x < $model_has_brand_num; $x++) {
+      $model_has_brand_data = $model_has_brand_rs->fetch_assoc();
+      $pid = $model_has_brand_data["id"];
     }
 
     if ($status == 0) {
-      $query .= " WHERE `brand_has_model_id`='" . $pid . "' ORDER BY `qty` ASC";
+      $query .= " WHERE `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `brand_has_model_id`='" . $pid . "' ORDER BY `qty` ASC";
+      $query .= " AND `brand_has_modle_id` = '" . $pid . "' ORDER BY `qty` ASC";
     }
   }
 
   if ($status == 0 && $condition != 0) {
-    $query .= " WHERE `condition_id`='" . $condition . "' ORDER BY `qty` ASC";
+    $query .= " WHERE `condition_id`= '" . $condition . "' ORDER BY `qty` ASC";
     $status = 1;
   } else if ($status != 0 && $condition != 0) {
-    $query .= " AND `condition_id`='" . $condition . "' ORDER BY `qty` ASC";
+    $query .= " AND `condition_id`= '" . $condition . "' ORDER BY `qty` ASC";
   }
 
   if ($status == 0 && $color != 0) {
-    $query .= " WHERE `color_id`='" . $color . "' ORDER BY `qty` ASC";
+    $query .= " WHERE `colour_id`= '" . $color . "' ORDER BY `qty` ASC";
     $status = 1;
   } else if ($status != 0 && $color != 0) {
-    $query .= " AND `color_id`='" . $color . "' ORDER BY `qty` ASC";
+    $query .= " AND `colour_id`= '" . $color . "' ORDER BY `qty` ASC";
   }
 
-  if (!empty($priceform) && empty($priceto)) {
+  if (!empty($price_from) && empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` >= '" . $priceform . "' ORDER BY `qty` ASC";
+      $query .= " WHERE `price` >= '" . $price_from . "' ORDER BY `qty` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` >= '" . $priceform . "' ORDER BY `qty` ASC";
+      $query .= " AND `price` >= '" . $price_from . "' ORDER BY `qty` ASC";
     }
-  } else if (empty($priceform) && !empty($priceto)) {
+  } else if (empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` <= '" . $priceto . "' ORDER BY `qty` ASC";
+      $query .= " WHERE `price` <= '" . $price_to . "' ORDER BY `qty` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` <= '" . $priceto . "' ORDER BY `qty` ASC";
+      $query .= " AND `price` <= '" . $price_to . "' ORDER BY `qty` ASC";
     }
-  } else if (!empty($priceform) && !empty($priceto)) {
+  } else if (!empty($price_from) && !empty($price_to)) {
     if ($status == 0) {
-      $query .= " WHERE `price` BETWEEN '" . $priceform . "' AND '" . $priceto . "' ORDER BY `qty` ASC";
+      $query .= " WHERE `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `qty` ASC";
       $status = 1;
     } else if ($status != 0) {
-      $query .= " AND `price` BETWEEN '" . $priceformo . "' AND '" . $priceto . "' ORDER BY `qty` ASC";
+      $query .= " AND `price` BETWEEN '" . $price_from . "' AND '" . $price_to . "' ORDER BY `qty` ASC";
     }
   }
 }
 
+?>
+
+<?php
 if ("0" != $_POST["page"]) {
   $pageno = $_POST["page"];
 } else {
@@ -658,7 +560,7 @@ if ("0" != $_POST["page"]) {
 $product_rs = Database::search($query);
 $product_num = $product_rs->num_rows;
 
-$results_per_page = 10;
+$results_per_page = 1;
 $number_of_pages = ceil($product_num / $results_per_page);
 
 $page_results = ((int)$pageno - 1) * $results_per_page;
